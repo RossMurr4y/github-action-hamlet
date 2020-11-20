@@ -12,6 +12,7 @@ runs:
   image: 'Dockerfile'
   env:
     HOME: /home/hamlet
+    GENERATION_CACHE_DIR: /home/hamlet/.hamlet/cache
   volumes:
      - ${{ github.workspace }}:/home/hamlet/src
   args:
