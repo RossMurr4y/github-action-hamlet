@@ -19,7 +19,7 @@ Currently supported tasks are:
 
 ### `task_build_schemas_output`
 
-**Description** Directory within the container to output the schemas. Defaults to the workspace root mounted inside the container
+**Description** Directory within the container to output the schemas. Defaults to the workspace root mounted inside the container at `/home/hamlet/src`
 **Type** string
 **Default** /github/workspace
 
@@ -29,5 +29,5 @@ Currently supported tasks are:
 uses: hamlet-io/hamlet-github-action@v1
 with:
   task_build_schemas: true
-  task_build_schemas_output: /github/workspace/path/to/project/schema/directory
+  task_build_schemas_output: /home/hamlet/src/path/to/project/schema/directory
 ```
