@@ -10,6 +10,8 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    HOME: /home/hamlet
   volumes:
      - ${{ github.workspace }}:/home/hamlet/src
   args:
