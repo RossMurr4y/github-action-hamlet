@@ -5,16 +5,11 @@ inputs:
     description: 'Generate Hamlet Schemas'
     default: false
   task_build_schemas_output:
-    description: 'Directory within the container to output the schemas. Defaults to the workspace volume root inside the container (/home/hamlet/src)'
-    default: '/home/hamlet/src'
+    description: 'Directory within the container to output the schemas. Workspace mounts to: /github/home'
+    default: '/github/home'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    HOME: /home/hamlet
-    GENERATION_CACHE_DIR: /home/hamlet/.hamlet/cache
-  volumes:
-     - ${{ github.workspace }}:/home/hamlet/src
   args:
     - ${{ inputs.task_build_schemas }}
     - ${{ inputs.task_build_schemas_output }}
