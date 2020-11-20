@@ -1,0 +1,15 @@
+name: 'Hamlet Go'
+description: 'Perform Hamlet CLI tasks from within a GitHub Action'
+inputs:
+  task_build_schemas:
+    description: 'Generate Hamlet Schemas'
+    default: false
+  task_build_schemas_output:
+    description: 'Directory within the container to output the schemas. Defaults to the workspace root inside the container (/github/workspace)'
+    default: '/github/workspace'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.task_build_schemas }}
+    - ${{ inputs.task_build_schemas_output }}
