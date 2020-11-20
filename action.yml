@@ -5,8 +5,8 @@ inputs:
     description: 'Generate Hamlet Schemas'
     default: false
   task_build_schemas_output:
-    description: 'Directory within the container to output the schemas. Workspace mounts to: /github/home'
-    default: '/github/home'
+    description: 'Directory within the container to output the schemas. Workspace mounts to: /github/workspace'
+    default: '/github/workspace'
 runs:
   using: 'docker'
   image: 'Dockerfile'
