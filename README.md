@@ -6,6 +6,7 @@ This action allows you to easily run Hamlet Tasks.
 
 Currently supported tasks are:
 
+* Read project.properties file into GITHUB_ENV persistent env file
 * Generate Hamlet Schemas
 
 
@@ -30,4 +31,26 @@ uses: hamlet-io/hamlet-github-action@v1
 with:
   task_build_schemas: true
   task_build_schemas_output: /home/hamlet/src/path/to/project/schema/directory
+```
+
+### `properties_file_path`
+
+**Description** Path to a properties file containing environment variables. Only required to be specified if this Action is running against a Hamlet CMDB repository and the properties file path is not in the conventional location (pipelines/properties/<project>.properties).
+**Type** string
+**Default** ""
+
+**Note:** A properties file will always be loaded into GITHUB_ENV if found. If you require persistence across Jobs of these settings, ensure the properties file is executed under a standalone job first, as below.
+
+## Example Usage
+
+```yaml
+# with properties file in conventional location
+uses: hamlet-io/hamlet-github-action@v1
+
+# OR
+
+# with properties file elsewhere
+uses: hamlet-io/hamlet-github-action@v1
+with:
+  properties_file_path: ${{ github.workspace }}/path/project.properties
 ```

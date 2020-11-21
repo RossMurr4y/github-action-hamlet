@@ -7,9 +7,13 @@ inputs:
   task_build_schemas_output:
     description: 'Directory within the container to output the schemas. Workspace mounts to: /github/workspace'
     default: '/github/workspace'
+  properties_file_path:
+    description: Path to a properties file containing environment variables
+    default: ""
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.task_build_schemas }}
     - ${{ inputs.task_build_schemas_output }}
+    - ${{ inputs.properties_file_path }}
