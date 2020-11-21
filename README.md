@@ -39,7 +39,7 @@ with:
 **Type** string
 **Default** ""
 
-**Note:** A properties file will always be loaded into GITHUB_ENV if found. If you require persistence across Jobs of these settings, ensure the properties file is executed under a standalone job first, as below.
+**Note:** A properties file will always be loaded into GITHUB_ENV if found, however the action that creates or updates GITHUB_ENV does not have access to the new value itself. To ensure access to a complete set of environment variables, a Job should begin with a stand-alone Action call used to establish them.
 
 ## Example Usage
 

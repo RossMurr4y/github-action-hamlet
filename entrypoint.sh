@@ -14,13 +14,14 @@ if [[ "$properties_file_path" == "" ]]; then
     if [[ -n "$properties_file_path" ]]; then
         echo ""
     else
-        echo "::core.debug No properties file found."
+        echo "::debug::No properties file found."
     fi
 else
     if [[ -e "$properties_file_path" ]]; then
-        echo "::exportVariable $(cat $properties_file_path | xargs)"
+        # export unique variables from properties file to GITHUB_ENV
+        cat $properties_file_path | xargs -I {} sh -c "grep -qxF {} GITHUB_ENV || echo {} >> GITHUB_ENV"
     else
-        echo "::core.setFailed Could not locate a properties file at path: $properties_file_path"
+        echo "::setFailed::Could not locate a properties file at path: ${properties_file_path}"
     fi
 fi
 
