@@ -12,7 +12,7 @@ properties_file_path="$3"
 
 # Set the environment variables file
 # Includes search for properties file
-/scripts/set_env $properties_file_path "GITHUB_ENV"
+/scripts/set_env "${properties_file_path}" "GITHUB_ENV"
 
 # Run Tasks
 [ "$build_schemas" == "true" ] && /scripts/build_schemas "$schemas_output_dir"
