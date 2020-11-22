@@ -10,13 +10,10 @@ if [[ "$properties_file_path" == "" ]]; then
     for f in pipelines/properties/*.properties; do
         [ -e "$f" ] && properties_file_path="$f" && break
     done
+    [ ! -n "$properties_file_path" ] && echo "::debug::No properties file found."
+fi
 
-    if [[ -n "$properties_file_path" ]]; then
-        echo ""
-    else
-        echo "::debug::No properties file found."
-    fi
-else
+if [[ -n "$properties_file_path" ]]; then
     if [[ -e "$properties_file_path" ]]; then
         # export unique variables from properties file to GITHUB_ENV
         cat $properties_file_path | xargs -I {} sh -c "grep -qxF {} GITHUB_ENV || echo {} >> GITHUB_ENV"
