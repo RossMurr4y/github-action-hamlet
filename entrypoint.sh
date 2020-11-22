@@ -16,7 +16,7 @@ fi
 if [[ -n "$properties_file_path" ]]; then
     if [[ -e "$properties_file_path" ]]; then
         # export unique variables from properties file to GITHUB_ENV
-        cat $properties_file_path | xargs -I {} sh -c "grep -qxF {} GITHUB_ENV || echo {} >> GITHUB_ENV"
+        cat $properties_file_path | xargs -I {} sh -c "grep -qxF {} GITHUB_ENV || echo {} >> GITHUB_ENV | echo Updated GITHUB_ENV: {}"
     else
         echo "::setFailed::Could not locate a properties file at path: ${properties_file_path}"
     fi
