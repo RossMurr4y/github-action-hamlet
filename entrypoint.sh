@@ -1,4 +1,11 @@
 #!/bin/bash
+
+# the entrypoint to the container.
+# this Action defines a number of tasks to perform on a Hamlet CMDB
+# the entrypoint should only contain sufficient logic so as to invoke applicable tasks
+# tasks are maintained in separate scripts in scripts/
+# utility definitions are maintained in scripts/utilities.sh
+
 build_schemas="$1"
 schemas_output_dir="$2"
 properties_file_path="$3"
@@ -22,10 +29,4 @@ if [[ -n "$properties_file_path" ]]; then
     fi
 fi
 
-if [[ "$build_schemas" == "true" ]]; then
-    hamlet entrance -i mock -p aws -p awstest -p azure -p azuretest invoke-entrance -e schema -u component -o "$schemas_output_dir"
-    hamlet entrance -i mock -p aws -p awstest -p azure -p azuretest invoke-entrance -e schema -u reference -o  "$schemas_output_dir"
-    hamlet entrance -i mock -p aws -p awstest -p azure -p azuretest invoke-entrance -e schema -u metaparameter -o "$schemas_output_dir"
-    # Remove Generated Contracts
-    rm ${schemas_output_dir}/schema-*-generation-contract.json
-fi
+[ "$build_schemas" == "true" ] && /scripts/build_schemas "$schemas_output_dir"
