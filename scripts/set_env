@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Update a persistent environment properties file with values found within a properties file
+
+properties_file_path="$1"
+target_file="$2"
+
+# read & export properties file into environment file
+# if its provided or discoverable
+if [[ "$properties_file_path" == "" ]]; then
+    # check conventional properties files
+    for f in pipelines/properties/*.properties; do
+        [ -e "$f" ] && properties_file_path="$f" && break
+    done
+    [ ! -n "$properties_file_path" ] && echo "::debug::No properties file found."
+fi
+
+if [[ -n "$properties_file_path" ]]; then
+    if [[ -e "$properties_file_path" ]]; then
+        # export unique variables from properties file to GITHUB_ENV
+        cat $properties_file_path | xargs -I {} sh -c "grep -qxF {} $target_file || echo {} >> GITHUB_ENV | echo Updated GITHUB_ENV: {}"
+    else
+        echo "::setFailed::Could not locate a properties file at path: ${properties_file_path}"
+    fi
+fi
