@@ -27,7 +27,7 @@ Currently supported tasks are:
 ## Example Usage
 
 ```yaml
-uses: hamlet-io/hamlet-github-action@v1
+uses: hamlet-io/github-action-hamlet@v1
 with:
   task_build_schemas: true
   task_build_schemas_output: /home/hamlet/src/path/to/project/schema/directory
@@ -45,12 +45,12 @@ with:
 
 ```yaml
 # with properties file in conventional location
-uses: hamlet-io/hamlet-github-action@v1
+uses: hamlet-io/github-action-hamlet@v1
 
 # OR
 
 # with properties file elsewhere
-uses: hamlet-io/hamlet-github-action@v1
+uses: hamlet-io/github-action-hamlet@v1
 with:
   properties_file_path: ${{ github.workspace }}/path/project.properties
 ```
