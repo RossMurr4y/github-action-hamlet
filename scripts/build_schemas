@@ -1,8 +1,6 @@
 #!/bin/bash
 schemas_output_dir="$1"
 
-hamlet entrance -i mock -p aws -p awstest -p azure -p azuretest invoke-entrance -e schema -u component -o "$schemas_output_dir"
-hamlet entrance -i mock -p aws -p awstest -p azure -p azuretest invoke-entrance -e schema -u reference -o  "$schemas_output_dir"
-hamlet entrance -i mock -p aws -p awstest -p azure -p azuretest invoke-entrance -e schema -u metaparameter -o "$schemas_output_dir"
+hamlet schemas -i mock -p shared -p sharedtest -p aws -p awstest -p azure -p azuretest create-schemas -o "$schemas_output_dir"
 # Remove Generated Contracts
 rm "${schemas_output_dir}"/schema-*-generation-contract.json
