@@ -54,3 +54,16 @@ uses: hamlet-io/github-action-hamlet@v1
 with:
   properties_file_path: ${{ github.workspace }}/path/project.properties
 ```
+
+# Development
+
+When updating this Action, committing the changes are not sufficient. You must tag your changes and push the tag, either overwriting the existing tag or pushing the new one.
+
+```bash
+# add tag
+git tag <tag>
+
+# push
+git push <remote> <tag> # with --force to override
+
+```
