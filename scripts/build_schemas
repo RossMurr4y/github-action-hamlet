@@ -1,6 +1,7 @@
 #!/bin/bash
 schemas_output_dir="$1"
 
-hamlet schema -i mock -p shared -p sharedtest -p aws -p awstest -p azure -p azuretest create-schemas -o "$schemas_output_dir"
+hamlet -i mock -p shared -p aws -p azure schema create-schemas -o "$schemas_output_dir"
+
 # Remove Generated Contracts
 rm "${schemas_output_dir}"/schema-*-generation-contract.json
