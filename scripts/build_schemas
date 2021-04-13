@@ -1,5 +1,17 @@
 #!/bin/bash
-schemas_output_dir="$1"
+schemas_output_dir="$1"; shift
+refresh_output_dir="$1"; shift
+
+DEFAULT_REFRESH_OUTPUT_DIR="false"
+REFRESH_OUTPUT_DIR="${refresh_output_dir:-${DEFAULT_REFRESH_OUTPUT_DIR}}"
+
+# delete contents within the output directory prior to building schemas
+# this will clear out any old or incorrect schemas
+if [[ ${REFRESH_OUTPUT_DIR} == "true" ]]; then
+    echo "::warning Clearing the Output Directory of old content."
+    echo "::warning     Output Dir: ${schemas_output_dir}"
+    rm -rf "${schemas_output_dir:?}/*"
+fi
 
 hamlet -i mock -p shared -p aws -p azure schema create-schemas -o "$schemas_output_dir"
 
