@@ -10,6 +10,9 @@ inputs:
   properties_file_path:
     description: Path to a properties file containing environment variables
     default: ""
+  refresh_output_dir:
+    description: Delete content in the output directory before other tasks
+    default: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -17,3 +20,4 @@ runs:
     - ${{ inputs.task_build_schemas }}
     - ${{ inputs.task_build_schemas_output }}
     - ${{ inputs.properties_file_path }}
+    - ${{ inputs.refresh_output_dir }}

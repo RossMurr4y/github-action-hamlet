@@ -9,10 +9,11 @@
 build_schemas="$1"
 schemas_output_dir="$2"
 properties_file_path="$3"
+refresh_output_dir="$4"
 
 # Set the environment variables file
 # Includes search for properties file
 /scripts/set_env "${properties_file_path}" "GITHUB_ENV"
 
 # Run Tasks
-[ "$build_schemas" == "true" ] && /scripts/build_schemas "$schemas_output_dir"
+[ "$build_schemas" == "true" ] && /scripts/build_schemas "$schemas_output_dir" "$refresh_output_dir"
